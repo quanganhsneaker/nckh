@@ -9,13 +9,14 @@
       <nav class="nav">
         <a href="{{ route ('index')}}">Trang chủ</a>
         <a href="{{ route ('info')}}">Tin tức</a>
-        <a href="#">Thư viện</a>
+        <a href="{{ route ('thuvien')}}">Thư viện</a>
         <a href="{{ route ('lienhe')}}">Liên hệ</a>
         <a href="{{ route ('lienket')}}">Liên kết</a>
-        <a href="#" class="language">🇬🇧</a>
+        <a href="{{ route (name: 'bieudo')}}">Biểu đồ</a>
       </nav>
       <div class="search-container">
-        <input type="text" placeholder="Tìm kiếm" />
-        <button>🔍</button>
+        <input type="text" id="search-input" placeholder="Tìm kiếm" />
+        <button id="search-button">🔍</button>
       </div>
+      
 </div>

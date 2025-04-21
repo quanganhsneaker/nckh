@@ -1,7 +1,7 @@
 @extends('main' )
 @section('content')
 <div class="link-container">
-    <h2>Liên kết website</h2>
+    <h2git>Liên kết website</h2git>
 
     <div class="link-item">
         <img src="{{asset('images/logoquochoi.jpg')}}" alt="Hà Nội">

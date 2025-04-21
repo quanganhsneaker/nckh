@@ -1,6 +1,6 @@
 @extends('main' )
 @section('content')
-<div class="container">
+<div class="containerlh">
     <h1>Liên hệ</h1>
     <div class="contact-section">
         <div class="contact-info">
@@ -19,21 +19,23 @@
         </div>
         <div class="contact-form">
             <h2>Liên hệ với chúng tôi</h2>
-            <form>
+            <form action="{{ route('contact.store') }}" method="POST">
+                @csrf
                 <label for="name">Họ tên</label>
                 <input type="text" id="name" name="name" required>
-
+            
                 <label for="phone">Số điện thoại</label>
                 <input type="text" id="phone" name="phone">
-
+            
                 <label for="email">Email *</label>
                 <input type="email" id="email" name="email" required>
-
+            
                 <label for="message">Nội dung</label>
                 <textarea id="message" name="message" rows="4"></textarea>
-
+            
                 <button type="submit">Gửi tin</button>
             </form>
+            
         </div>
     </div>
 </div>
