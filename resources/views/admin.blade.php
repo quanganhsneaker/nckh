@@ -104,11 +104,15 @@
 <!-- Khung chat -->
 <div id="chatForm" style="display: none; flex-direction: column;">
   <div id="chatHeader">
-    Hỗ trợ
+    Hỗ trợ phản ánh
     <span id="closeChat" onclick="toggleChat()">✖</span>
   </div>
   <div id="chatMessages"></div>
-  <input type="text" id="chatInput" placeholder="Nhập tin nhắn..." onkeypress="handleChatInput(event)">
+  <div id="chatInputContainer">
+    <input type="file" id="imageUpload" onchange="handleImageUpload(event)" hidden>
+    <button onclick="document.getElementById('imageUpload').click()">📷</button>
+    <input type="text" id="chatInput" placeholder="Nhập phản ánh..." onkeypress="handleChatInput(event)">
+  </div>
 </div>
 <script>
     document.addEventListener("DOMContentLoaded", function () {

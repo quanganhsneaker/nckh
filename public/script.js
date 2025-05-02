@@ -502,7 +502,6 @@ window.onload = renderMessages;
 function toggleChat() {
   const chatForm = document.getElementById('chatForm');
   chatForm.style.display = chatForm.style.display === 'none' || chatForm.style.display === '' ? 'flex' : 'none';
-
   if (chatForm.style.display === 'flex') {
     renderMessages();
   }
@@ -514,12 +513,16 @@ function handleChatInput(event) {
     const message = input.value.trim();
     if (message) {
       const stored = JSON.parse(localStorage.getItem('chatMessages')) || [];
-
       const isAdmin = window.location.href.includes("admin");
       const sender = isAdmin ? "Admin" : "User";
 
-      stored.push({ sender, text: message });
+      stored.push({ sender, text: message, type: 'text' });
       localStorage.setItem('chatMessages', JSON.stringify(stored));
+
+      // Chỉ gọi botReply nếu người gửi là User
+      if (!isAdmin) {
+        botReply(message, stored);
+      }
 
       input.value = '';
       renderMessages();
@@ -527,24 +530,90 @@ function handleChatInput(event) {
   }
 }
 
-function renderMessages() {
+function handleImageUpload(event) {
+  const file = event.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const stored = JSON.parse(localStorage.getItem('chatMessages')) || [];
+      const isAdmin = window.location.href.includes("admin");
+      const sender = isAdmin ? "Admin" : "User";
+
+      stored.push({ sender, image: e.target.result, type: 'image' });
+      localStorage.setItem('chatMessages', JSON.stringify(stored));
+
+      // Không gọi botReply khi gửi hình ảnh
+      renderMessages();
+    };
+    reader.readAsDataURL(file);
+  }
+  event.target.value = '';
+}
+
+function botReply(userMessage, stored) {
+    const lowerCaseMessage = userMessage.toLowerCase();
+    let botMessage = null;
+  
+    // Phản hồi nếu có từ khóa phù hợp
+    if (lowerCaseMessage.includes("nước") || lowerCaseMessage.includes("môi trường")) {
+      botMessage = "Chất lượng nước ở Hà Nội hiện đang là vấn đề được quan tâm. Nhiều sông, hồ như sông Tô Lịch, hồ Hoàn Kiếm có dấu hiệu ô nhiễm. Bạn muốn biết thêm về khu vực nào?";
+    } else if (lowerCaseMessage.includes("ô nhiễm")) {
+      botMessage = "Ô nhiễm nước ở Hà Nội chủ yếu do nước thải sinh hoạt và công nghiệp chưa qua xử lý. Chính quyền đang triển khai các biện pháp cải thiện như xây dựng nhà máy xử lý nước thải. Bạn có câu hỏi cụ thể nào không?";
+    } else if (lowerCaseMessage.includes("hà nội")) {
+      botMessage = "Hà Nội đang đối mặt với thách thức về chất lượng nước, đặc biệt ở các sông hồ nội thành. Bạn muốn tìm hiểu về giải pháp hay tình trạng hiện tại?";
+    } else if (lowerCaseMessage.includes("sông") || lowerCaseMessage.includes("hồ")) {
+      botMessage = "Các sông và hồ ở Hà Nội như sông Tô Lịch, hồ Tây thường bị ô nhiễm do nước thải. Một số dự án làm sạch đang được triển khai. Bạn muốn biết thêm về sông/hồ nào?";
+    }
+     else if (lowerCaseMessage.includes("chào") || lowerCaseMessage.includes("hồ")) {
+      botMessage = "chào cái gì ";
+    }
+  
+    // Nếu có phản hồi thì mới trả lời
+    if (botMessage) {
+      setTimeout(() => {
+        stored.push({ sender: "Bot", text: botMessage, type: 'text' });
+        localStorage.setItem('chatMessages', JSON.stringify(stored));
+        renderMessages();
+      }, 1000);
+    }
+  }
+  
+function renderMessages(showAll = false) {
   const chatMessages = document.getElementById('chatMessages');
   const stored = JSON.parse(localStorage.getItem('chatMessages')) || [];
-
   const isAdmin = window.location.href.includes("admin");
   const currentUser = isAdmin ? "Admin" : "User";
+  const maxMessages = 50;
 
   chatMessages.innerHTML = '';
-  stored.forEach(msg => {
+  let messagesToShow = stored;
+
+  if (!showAll && stored.length > maxMessages) {
+    messagesToShow = stored.slice(-maxMessages);
+    chatMessages.innerHTML = `
+      <div id="loadMore" onclick="renderMessages(true)">Xem thêm tin nhắn cũ</div>
+    `;
+  }
+
+  messagesToShow.forEach(msg => {
     const isMe = msg.sender === currentUser;
     const displayName = isMe ? "Tôi" : msg.sender;
     const messageClass = isMe ? "chat-right" : "chat-left";
 
-    chatMessages.innerHTML += `
-      <div class="${messageClass}">
-        <p><b>${displayName}:</b> ${msg.text}</p>
-      </div>
-    `;
+    if (msg.type === 'image') {
+      chatMessages.innerHTML += `
+        <div class="${messageClass}">
+          <p><b>${displayName}:</b></p>
+          <img src="${msg.image}" class="chat-image" alt="Uploaded image">
+        </div>
+      `;
+    } else {
+      chatMessages.innerHTML += `
+        <div class="${messageClass}">
+          <p><b>${displayName}:</b> ${msg.text}</p>
+        </div>
+      `;
+    }
   });
 
   chatMessages.scrollTop = chatMessages.scrollHeight;

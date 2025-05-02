@@ -61,9 +61,7 @@
               </div>
           </div>
              
-            <button id="resetZoom" class="button">Reset Zoom</button>
-            <button id="toggleMap" class="button">Bật/Tắt Bản Đồ</button>
-            <button id="toggleHn2Layer" class="button">Bật/Tắt Lớp Hà Nội (hn2)</button>
+         
             <div id="legend">
                 <h4>Chú thích</h4>
                 <div class="legend-item">
