@@ -46,7 +46,7 @@
        
         <a href="{{ route (name: 'admin') }}">Trang chủ</a>
             <a href="{{ route ('messages') }}">Liên hệ</a>
-            <a href="{{ route('locations.index') }}">Quản lý điểm</a>
+       
 
             
     </div>

@@ -60,46 +60,36 @@
 </div>
 
   
-<!-- Modal chỉnh sửa thông số -->
+ <!-- Modal chỉnh sửa thông số -->
 <div id="editModal" class="modal" style="display: none;">
-  <div class="modal-content" style="
-      max-width: 400px;
-      margin: 10% auto;
-      padding: 20px;
-      background-color: white;
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-  ">
-      <h3 style="text-align: center; margin-bottom: 20px;">Chỉnh sửa thông số nước</h3>
-      <div id="editForm">
-          <div style="margin-bottom: 10px;">
-              <label for="editTDS">TDS:</label>
-              <input type="number" id="editTDS" step="0.01" class="input-field">
-          </div>
-          <div style="margin-bottom: 10px;">
-              <label for="editPH">PH:</label>
-              <input type="number" id="editPH" step="0.01" class="input-field">
-          </div>
-          <div style="margin-bottom: 10px;">
-              <label for="editCOD">COD:</label>
-              <input type="number" id="editCOD" step="0.01" class="input-field">
-          </div>
-          <div style="margin-bottom: 10px;">
-              <label for="editBOD">BOD:</label>
-              <input type="number" id="editBOD" step="0.01" class="input-field">
-          </div>
-          <div style="margin-bottom: 20px;">
-              <label for="editTSS">TSS:</label>
-              <input type="number" id="editTSS" step="0.01" class="input-field">
-          </div>
-          <div style="text-align: center;">
-              <button id="saveEdit" class="button" style="margin-right: 10px;">Lưu</button>
-              <button id="cancelEdit" class="button">Hủy</button>
-          </div>
-      </div>
-  </div>
+    <div class="modal-content" style="
+        max-width: 400px;
+        margin: 10% auto;
+        padding: 20px;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    ">
+        <h3 style="text-align: center;">Chỉnh sửa thông số nước</h3>
+        <div id="editForm">
+            <label for="editTDS">TDS:</label>
+            <input type="number" id="editTDS" step="0.01"><br>
+            <label for="editPH">PH:</label>
+            <input type="number" id="editPH" step="0.01"><br>
+            <label for="editCOD">COD:</label>
+            <input type="number" id="editCOD" step="0.01"><br>
+            <label for="editBOD">BOD:</label>
+            <input type="number" id="editBOD" step="0.01"><br>
+            <label for="editTSS">TSS:</label>
+            <input type="number" id="editTSS" step="0.01"><br><br>
+            <div style="text-align: center;">
+                <button id="saveEdit" class="button">Lưu</button>
+                <button id="cancelEdit" class="button">Hủy</button>
+            </div>
+        </div>
+    </div>
 </div>
-
+  
     <footer>© 2025 - Đồ án Môi trường nước Hà Nội</footer>
     <script src="script.js"></script>
 </body>

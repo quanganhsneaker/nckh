@@ -5,6 +5,7 @@ use App\Models\WaterQuality;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\LocationController;
+use App\Http\Controllers\PointController;
 
 Route::get('/admin', [qa:: class,'admin'])->name('admin');
 
@@ -25,7 +26,5 @@ Route::get('/air_quality', function () {
 
 Route::post('/contact/store', [ContactController::class, 'store'])->name('contact.store');
 Route::get('/messages', [ContactController::class, 'index'])->name('messages');
-Route::resource('locations', LocationController::class);
-Route::get('/api/locations', function () {
-    return response()->json(App\Models\Location::all());
-});
+Route::get('/edithome', [qa::class, 'edithome'])->name('edithome');
+

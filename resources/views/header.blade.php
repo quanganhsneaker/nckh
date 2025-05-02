@@ -15,8 +15,8 @@
         <a href="{{ route (name: 'bieudo')}}">Biểu đồ</a>
       </nav>
       <div class="search-container">
-        <input type="text" id="search-input" placeholder="Tìm kiếm" />
-        <button id="search-button">🔍</button>
-      </div>
+        <input type="text" id="searchPoint" placeholder="Tìm kiếm điểm đo...">
+        <img id="searchButton" class="search-icon" src="{{asset('images/search.png')}}" alt="Tìm kiếm">
+    </div>
       
 </div>

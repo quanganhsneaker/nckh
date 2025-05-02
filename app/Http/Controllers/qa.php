@@ -10,6 +10,10 @@ class qa extends Controller
     public function index(){
         return view("home");
     }
+    public function edithome(){
+        return view("edithome");
+    }
+  
     public  function lienhe(){
         return view("lienhe");
     }

@@ -21,10 +21,4 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <link rel="stylesheet" href="{{asset('styles.css')}}" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-      #map {
-        width: 1100px;
-        height: 600px; /* Chiều cao 500px */
-        margin: 20px 20px 0 20px;
-      }
-    </style>
+  

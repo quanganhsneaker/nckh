@@ -77,8 +77,8 @@
         <h4 class="text-center">Quản lý Nước Sạch</h4>
        
             <a href="{{ route (name: 'admin') }}">Trang chủ</a>
-            <a href="{{ route ('messages') }}">Liên hệ</a>
-            <a href="{{ route('locations.index') }}">Quản lý điểm</a>
+            <a href="{{ route ('messages') }}">Liên hệ</a> 
+            <a href="{{ route ('edithome') }}">Quản lý </a> 
 
             <a onclick="logout()">Đăng xuất</a>
     </div>
