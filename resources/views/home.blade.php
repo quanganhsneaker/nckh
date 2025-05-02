@@ -2,9 +2,12 @@
 <html lang="en">
 <head>
     @include('head')
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
    
 </head>
 <body>
@@ -100,7 +103,25 @@
   </div>
 </div>
 
+    <!-- Nút mở khung chat -->
+    <div id="chatIcon" onclick="toggleChat()">💬</div>
+
+    <!-- Khung chat -->
+    <div id="chatForm" style="display: none; flex-direction: column;">
+      <div id="chatHeader">
+        Hỗ trợ
+        <span id="closeChat" onclick="toggleChat()">✖</span>
+      </div>
+      <div id="chatMessages"></div>
+      <input type="text" id="chatInput" placeholder="Nhập tin nhắn..." onkeypress="handleChatInput(event)">
+    </div>
+
+
+
+
     <footer>© 2025 - Đồ án Môi trường nước Hà Nội</footer>
     <script src="script.js"></script>
+    <script src="chat.js"></script>
+
 </body>
 </html>

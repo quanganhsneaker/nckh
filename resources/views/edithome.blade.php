@@ -7,8 +7,45 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
    
 </head>
+<style>
+    header {
+        background-color: #0077ffd0;
+        color: white;
+        padding: 15px 30px;
+        font-size: 24px;
+        font-weight: bold;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    button {
+        background-color: white;
+        color: #0077ff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 6px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    button:hover {
+        background-color: #e6f0ff;
+    }
+
+    button a {
+        text-decoration: none;
+        color: #0077ff;
+        font-weight: bold;
+    }
+</style>
+
 <body>
-    <header>@include('header')</header>
+    <header>
+        Bản đồ môi trường nước Hà Nội - Admin
+        <button><a href="{{ route (name: 'admin') }}">Quay lại trang chủ</a></button>
+    </header>
     <div id="main">
         <div id="sidebar">
             <h3>Chọn điểm đo</h3>

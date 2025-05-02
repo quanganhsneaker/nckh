@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - Quản lý Nước Sạch</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script> 
+    <link rel="stylesheet" href="{{asset('styles.css')}}" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
     <style>
         body {
             display: flex;
@@ -89,8 +96,20 @@
         
       
     </div>
+    
 </div>
+<!-- Nút mở khung chat -->
+<div id="chatIcon" onclick="toggleChat()">💬</div>
 
+<!-- Khung chat -->
+<div id="chatForm" style="display: none; flex-direction: column;">
+  <div id="chatHeader">
+    Hỗ trợ
+    <span id="closeChat" onclick="toggleChat()">✖</span>
+  </div>
+  <div id="chatMessages"></div>
+  <input type="text" id="chatInput" placeholder="Nhập tin nhắn..." onkeypress="handleChatInput(event)">
+</div>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         // Kiểm tra trạng thái đăng nhập từ localStorage
@@ -139,5 +158,7 @@
     }
 </script>
 
+<script src="chat.js"></script>
+<script src="script.js"></script>
 </body>
 </html>

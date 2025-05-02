@@ -496,3 +496,56 @@ document.getElementById("resetZoom").addEventListener("click", function () {
   const ctx = document.getElementById("chartCanvas").getContext("2d");
   ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 });
+// ===============================================================================================================================
+window.onload = renderMessages;
+
+function toggleChat() {
+  const chatForm = document.getElementById('chatForm');
+  chatForm.style.display = chatForm.style.display === 'none' || chatForm.style.display === '' ? 'flex' : 'none';
+
+  if (chatForm.style.display === 'flex') {
+    renderMessages();
+  }
+}
+
+function handleChatInput(event) {
+  if (event.key === 'Enter') {
+    const input = document.getElementById('chatInput');
+    const message = input.value.trim();
+    if (message) {
+      const stored = JSON.parse(localStorage.getItem('chatMessages')) || [];
+
+      const isAdmin = window.location.href.includes("admin");
+      const sender = isAdmin ? "Admin" : "User";
+
+      stored.push({ sender, text: message });
+      localStorage.setItem('chatMessages', JSON.stringify(stored));
+
+      input.value = '';
+      renderMessages();
+    }
+  }
+}
+
+function renderMessages() {
+  const chatMessages = document.getElementById('chatMessages');
+  const stored = JSON.parse(localStorage.getItem('chatMessages')) || [];
+
+  const isAdmin = window.location.href.includes("admin");
+  const currentUser = isAdmin ? "Admin" : "User";
+
+  chatMessages.innerHTML = '';
+  stored.forEach(msg => {
+    const isMe = msg.sender === currentUser;
+    const displayName = isMe ? "Tôi" : msg.sender;
+    const messageClass = isMe ? "chat-right" : "chat-left";
+
+    chatMessages.innerHTML += `
+      <div class="${messageClass}">
+        <p><b>${displayName}:</b> ${msg.text}</p>
+      </div>
+    `;
+  });
+
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
